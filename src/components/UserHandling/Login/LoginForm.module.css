@@ -1,0 +1,22 @@
+.form-control {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-control button{
+    color: white;
+    background-color: darkviolet;
+    margin-left: 140px;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form-control button:disabled{
+    cursor: not-allowed;
+    background-color: #3f3f3f;
+    color: white;
+}

@@ -1,0 +1,21 @@
+.input-control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.input-control input{
+    width: 70%;
+    display: block;
+    line-height: 2rem;
+    font-size: 22px;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.invalid {
+    border-bottom: 1px solid red;
+    background-color: #ee7070;
+}
