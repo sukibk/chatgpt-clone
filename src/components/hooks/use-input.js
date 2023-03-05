@@ -42,10 +42,8 @@ const useInput = (inputValidator) => {
         dispatchInput({type: 'RESET'})
     }
 
-    console.log(input.value, isInputValid)
-
     return{
-        input,
+        input:  input.value,
         isInputValid,
         inputBlurHandler,
         inputChangeHandler,
