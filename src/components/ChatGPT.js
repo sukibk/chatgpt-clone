@@ -1,5 +1,5 @@
 import {useEffect, useState, useRef} from "react";
-import './ChatGpt.css';
+import styles from './ChatGpt.module.css';
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -48,41 +48,41 @@ const ChatGPT = (props) => {
         // else
         //     return <><p key={item.key} className="message">{item.content}</p> <br/></>
         if(item.type === 'answer')
-        return <div className="chatbox__messages__user-message--ind-message">
-            <p className="name">Utopia AI</p> <br/>
-            <p className="message">{item.content}</p>
+        return <div className={styles["chatbox__messages__user-message--ind-message"]}>
+            <p className={styles["name"]}>Utopia AI</p> <br/>
+            <p className={styles["message"]}>{item.content}</p>
         </div>
         else
-            return <div className="chatbox__messages__user-message--ind-message-user">
-                <p className="name">User</p> <br/>
-                <p className="message">{item.content}</p>
+            return <div className={styles["chatbox__messages__user-message--ind-message-user"]}>
+                <p className={styles["name"]}>User</p> <br/>
+                <p className={styles["message"]}>{item.content}</p>
             </div>
     });
 
     return (
-        <div className='container' ng-cloak ng-app="chatApp">
+        <div className={styles["container"]}>
             <h1>UTOPIA AI</h1>
-            <div className='chatbox' ng-controller="MessageCtrl as chatMessage">
-                <div className='chatbox__user-list'>
+            <div className={styles["chatbox"]}>
+                <div className={styles['chatbox__user-list']}>
                     <h1>CHAT HISTORY</h1>
-                    <div className='chatbox__user--active'>
+                    <div className={styles['chatbox__user--active']}>
                         <p>CHAT 1</p>
                     </div>
-                    <div className='chatbox__user--busy'>
+                    <div className={styles['chatbox__user--busy']}>
                         <p>CHAT 2</p>
                     </div>
-                    <div className='chatbox__user--active'>
+                    <div className={styles['chatbox__user--active']}>
                         <p>CHAT 3</p>
                     </div>
-                    <div className='chatbox__user--active'>
+                    <div className={styles['chatbox__user--active']}>
                         <p>CHAT 4</p>
                     </div>
-                    <div className='chatbox__user--away'>
+                    <div className={styles['chatbox__user--away']}>
                         <p>CHAT 5</p>
                     </div>
                 </div>
-                <div className="marko">
-                    <div className="chatbox__messages__user-message">
+                <div className={styles["marko"]}>
+                    <div className={styles["chatbox__messages__user-message"]}>
                             {chats}
                     </div>
                 </div>

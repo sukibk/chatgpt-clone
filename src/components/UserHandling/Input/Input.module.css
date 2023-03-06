@@ -6,6 +6,7 @@
 }
 
 .input-control input{
+    color: black;
     width: 70%;
     display: block;
     line-height: 2rem;
@@ -18,4 +19,13 @@
 .invalid {
     border-bottom: 1px solid red;
     background-color: #ee7070;
+}
+
+input:focus{
+    color: black;
+    font-weight: bold;
+}
+
+input::placeholder{
+    color: lightgray;
 }

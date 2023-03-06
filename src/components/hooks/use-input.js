@@ -1,5 +1,5 @@
 import {useReducer} from "react";
-import styles from '../UserHandling/Login/Input.module.css'
+import styles from '../UserHandling/Input/Input.module.css'
 
 const initialInput = {
     value: '',

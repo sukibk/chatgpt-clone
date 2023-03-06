@@ -1,7 +1,7 @@
 import React from "react";
 
 const LoginContext = React.createContext({
-    changeScreen: false,
+    changeScreen: 0,
     updatePage: ()=>{}
 })
 

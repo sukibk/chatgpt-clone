@@ -8,7 +8,7 @@
 .form-control button{
     color: white;
     background-color: darkviolet;
-    margin-left: 140px;
+    margin-left: 130px;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     border: none;
@@ -18,7 +18,7 @@
 
 .form-control p {
     margin-top: 2rem;
-    margin-left: 30px;
+    margin-left: 45px;
 }
 
 .form-control p span {

@@ -2,10 +2,10 @@ import {useState} from 'react';
 import LoginContext from "./login-context";
 
 const LoginProvider = (props) => {
-    const [loginContext, setLoginContext] = useState(false)
+    const [loginContext, setLoginContext] = useState(0)
 
-    const updatePage = () => {
-        setLoginContext(true);
+    const updatePage = (state) => {
+        setLoginContext(state);
     }
 
     return (

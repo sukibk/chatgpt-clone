@@ -1,21 +1,18 @@
-import Input from "../Input/Input";
-import styles from "./LoginForm.module.css"
-import useInput from "../../hooks/use-input";
 import {useContext, useEffect, useState} from "react";
-import ChatGPT from "../../ChatGPT";
 import LoginContext from "../../store/login-context";
+import useInput from "../../hooks/use-input";
+import styles from "./RegisterForm.module.css";
+import Input from "../Input/Input";
 
-const LoginForm = (props) => {
 
-    const [error, setError] = useState();
-    const [users, setusers] = useState([]);
-    const [changeScreen, setChangeScreen] = useState(false);
+const RegisterForm = () => {
+    const [error, setError] = useState(null);
+    const [users, setUsers] = useState([]);
     const [initialRenderOver, setInitialRenderOver] = useState(false);
-    const [isLogging, setIsLogging] = useState(false);
-    const [announcement, setAnnouncement] = useState('Logging in...');
+    const [isRegistering, setIsRegistering] = useState(false);
+    const [announcement, setAnnouncement] = useState('Creating account...');
 
     const ctx = useContext(LoginContext);
-
 
     const {input: usernameValue,
         isInputValid: isUsernameValid,
@@ -50,21 +47,31 @@ const LoginForm = (props) => {
 
             const users = [];
 
-
             for(const key in data){
                 users.push(data[key])
             }
 
-            setusers(users);
+            setUsers(users);
         } catch (error) {
             setError(error.message);
         }
         // setIsLoading(false);
     };
 
+    async function addUserHandler(user) {
+        const response = await fetch('https://react-http-app-9d66f-default-rtdb.firebaseio.com/users.json',
+            {method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }});
+
+    }
+
+
     const loginSubmitHandler = (e) => {
-        setIsLogging(true);
-        setAnnouncement('Logging in...')
+        setIsRegistering(true);
+        setAnnouncement('Creating account...')
         e.preventDefault();
         if(!isFormValid) return;
         fetchUsers();
@@ -74,14 +81,18 @@ const LoginForm = (props) => {
         if(initialRenderOver) {
             const foundUser = [];
             for(let i = 1; i < users.length; i++){
-                if(users[i].username === usernameValue && users[i].password === passwordValue)
+                if(users[i].username === usernameValue.trim())
                     foundUser.push(users[i])
             }
-            if(foundUser.length !== 0){
-                setIsLogging(false);
-                ctx.updatePage(2);
+            if(foundUser.length === 0){
+                addUserHandler({username: usernameValue, password: passwordValue})
+                setAnnouncement('Account created! Redirecting back to Log In...')
+                setTimeout(()=>{
+                    setIsRegistering(false);
+                    ctx.updatePage(0);
+                }, 3000)
             }
-            setAnnouncement('Wrong Credentials')
+            else setAnnouncement('User already registered!')
         }
         else setInitialRenderOver(true);
     }, [users])
@@ -94,10 +105,10 @@ const LoginForm = (props) => {
 
         <Input styling={passwordStyle} placeholder='Password' value={passwordValue}
                type='password' onChange={onPasswordChange} onBlur={onPasswordBlur}/>
-        <button disabled={!isFormValid} type='submit'>LOG IN</button>
-        <p>Don't have an account yet? <span onClick={()=>ctx.updatePage(1)}>Register here!</span></p>
-        {isLogging && <><br/><br/><center>{announcement}</center></>}
+        <button disabled={!isFormValid} type='submit'>REGISTER</button>
+        <p>Already have an account? <span onClick={ctx.updatePage.bind(0)}>Login here!</span></p>
+        {isRegistering && <><br/><br/><center>{announcement}</center></>}
     </form></>
 }
 
-export default LoginForm;
+export default RegisterForm;
