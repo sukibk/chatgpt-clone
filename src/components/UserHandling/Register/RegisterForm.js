@@ -89,7 +89,7 @@ const RegisterForm = () => {
                 setAnnouncement('Account created! Redirecting back to Log In...')
                 setTimeout(()=>{
                     setIsRegistering(false);
-                    ctx.updatePage(0);
+                    ctx.updatePage('Login');
                 }, 3000)
             }
             else setAnnouncement('User already registered!')
@@ -106,7 +106,7 @@ const RegisterForm = () => {
         <Input styling={passwordStyle} placeholder='Password' value={passwordValue}
                type='password' onChange={onPasswordChange} onBlur={onPasswordBlur}/>
         <button disabled={!isFormValid} type='submit'>REGISTER</button>
-        <p>Already have an account? <span onClick={ctx.updatePage.bind(0)}>Login here!</span></p>
+        <p>Already have an account? <span onClick={()=>ctx.updatePage('Login')}>Login here!</span></p>
         {isRegistering && <><br/><br/><center>{announcement}</center></>}
     </form></>
 }

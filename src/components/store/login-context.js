@@ -1,8 +1,10 @@
 import React from "react";
 
 const LoginContext = React.createContext({
-    changeScreen: 0,
-    updatePage: ()=>{}
+    currentPage: '',
+    updatePage: () => {},
+    showPage: false,
+    updateState: () => {}
 })
 
 export default LoginContext;

@@ -5,10 +5,10 @@ import LoginContext from "./components/store/login-context";
 
 function App() {
   const ctx = useContext(LoginContext);
-  let currentPage = <HomePage />
+  let currentPage;
 
-  if(ctx.changeScreen === 0 || ctx.changeScreen === 1) currentPage = <HomePage />
-  if(ctx.changeScreen === 2) currentPage = <ChatGPT />
+  if(ctx.showPage === false) currentPage = <HomePage />
+  if(ctx.showPage === true) currentPage = <ChatGPT />
 
   return <>
     {currentPage}

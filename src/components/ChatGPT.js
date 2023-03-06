@@ -1,5 +1,6 @@
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState, useRef, useContext} from "react";
 import styles from './ChatGpt.module.css';
+import LoginContext from "./store/login-context";
 
 const { Configuration, OpenAIApi } = require("openai");
 
@@ -9,6 +10,8 @@ const ChatGPT = (props) => {
     const [chat, setChat] = useState([{type: 'answer', content: answer}]);
 
     const didMountRef = useRef(false);
+
+    const ctx = useContext(LoginContext);
 
     const configuration = new Configuration({
         apiKey: process.env.REACT_APP_API_KEY,
@@ -59,8 +62,14 @@ const ChatGPT = (props) => {
             </div>
     });
 
+    const logOutHandler = () => {
+        ctx.updatePage('Login');
+        ctx.updateState(false);
+    }
+
     return (
         <div className={styles["container"]}>
+            <button className={styles["logout-button"]} onClick={logOutHandler}>LOG OUT</button>
             <h1>UTOPIA AI</h1>
             <div className={styles["chatbox"]}>
                 <div className={styles['chatbox__user-list']}>

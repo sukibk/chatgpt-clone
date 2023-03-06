@@ -169,6 +169,21 @@
     font-weight: 300;
 }
 
+.logout-button {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    border: none;
+    width: 10%;
+    padding: 0.5em;
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
 .chatbox form button:hover{
     cursor: pointer;
 }

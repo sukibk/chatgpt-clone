@@ -79,9 +79,10 @@ const LoginForm = (props) => {
             }
             if(foundUser.length !== 0){
                 setIsLogging(false);
-                ctx.updatePage(2);
+                ctx.updatePage('ChatGPT');
+                ctx.updateState(true);
             }
-            setAnnouncement('Wrong Credentials')
+            else setAnnouncement('Wrong Credentials')
         }
         else setInitialRenderOver(true);
     }, [users])
@@ -95,7 +96,7 @@ const LoginForm = (props) => {
         <Input styling={passwordStyle} placeholder='Password' value={passwordValue}
                type='password' onChange={onPasswordChange} onBlur={onPasswordBlur}/>
         <button disabled={!isFormValid} type='submit'>LOG IN</button>
-        <p>Don't have an account yet? <span onClick={()=>ctx.updatePage(1)}>Register here!</span></p>
+        <p>Don't have an account yet? <span onClick={()=>ctx.updatePage('Register')}>Register here!</span></p>
         {isLogging && <><br/><br/><center>{announcement}</center></>}
     </form></>
 }
